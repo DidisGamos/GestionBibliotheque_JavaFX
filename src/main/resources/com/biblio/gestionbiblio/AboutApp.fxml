@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="400.0" styleClass="about-container" stylesheets="@files/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biblio.gestionbiblio.AboutApp">
+    <StackPane styleClass="about-card">
+        <VBox alignment="CENTER" spacing="20">
+            <VBox alignment="CENTER" spacing="5">
+                <ImageView fitHeight="80.0" fitWidth="80.0" preserveRatio="true">
+                    <image>
+                        <Image url="@assets/Alliance_Francaise-logo-EEC1EE1CC6-seeklogo.com.png" />
+                    </image>
+                </ImageView>
+                <Label alignment="CENTER" styleClass="logo-title" stylesheets="@files/style.css" text="Alliance Française" />
+                <Label styleClass="logo-subtitle" stylesheets="@files/style.css" text="Système de Gestion de Bibliothèque" />
+                <Label styleClass="app-version" stylesheets="@files/style.css" text="Version 1.0.0" />
+            </VBox>
+            <VBox spacing="5">
+                <VBox styleClass="info-group">
+                    <Label styleClass="info-label" stylesheets="@files/style.css" text="DESCRIPTION" />
+                    <Label styleClass="info-value" stylesheets="@files/style.css" text="Cette application permet de gérer les membres, les livres, les emprunts et retours d'une bibliothèque." wrapText="true" />
+                </VBox>
+                <VBox styleClass="info-group">
+                    <Label styleClass="info-label" text="AUTEUR / DÉVELOPPEUR" />
+                    <Label styleClass="info-value" text="Herllandys Amoros Christy" />
+                </VBox>
+                <VBox styleClass="info-group">
+                    <Label styleClass="info-label" text="TECHNOLOGIES UTILISÉES" />
+                    <FlowPane hgap="5" vgap="5">
+                        <Label styleClass="tech-badge" text="Java 17" />
+                        <Label styleClass="tech-badge" text="JavaFX 17" />
+                        <Label styleClass="tech-badge" text="Maven" />
+                        <Label styleClass="tech-badge" text="Scene Builder" />
+                    </FlowPane>
+                </VBox>
+                <VBox styleClass="info-group">
+                    <Label styleClass="info-label" text="BASE DE DONNÉE UTILISÉES" />
+                    <FlowPane hgap="5" vgap="5">
+                        <Label styleClass="tech-badge" text="PostgreSQL 17.4" />
+                    </FlowPane>
+                </VBox>
+                <VBox styleClass="info-group">
+                    <Label styleClass="info-label" text="LICENCE" />
+                    <Label styleClass="info-value" text="Projet personnel - Tous droits réservés" />
+                </VBox>
+                <VBox styleClass="info-group">
+                    <Label styleClass="info-label" text="DATE DE CRÉATION" />
+                    <Label styleClass="info-value" text="Avril 2025" />
+                </VBox>
+                <VBox styleClass="info-group">
+                    <Label styleClass="info-label" text="CONTACT" />
+                    <Label styleClass="info-value" text="herllandysamoroschristy@gmail.com" />
+                </VBox>
+            </VBox>
+            <VBox alignment="CENTER" styleClass="button-container">
+                <Button fx:id="CloseAbout" onAction="#CloseAboutApp" styleClass="close-button" text="Fermer" />
+            </VBox>
+        </VBox>
+    </StackPane>
+</VBox>

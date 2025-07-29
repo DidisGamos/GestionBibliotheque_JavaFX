@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane prefHeight="650.0" prefWidth="1322.0" styleClass="dashboard-container" stylesheets="@files/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biblio.gestionbiblio.TableBoardsController">
+
+    <top>
+        <VBox prefHeight="530.0" prefWidth="1322.0" spacing="10">
+            <HBox alignment="CENTER_LEFT" spacing="15" styleClass="dashboard-header">
+                <Label styleClass="dashboard-title" text="Tableau de bord" />
+                <Label styleClass="dashboard-subtitle" text="Bienvenue dans votre système de gestion de bibliothèque" />
+                <HBox HBox.hgrow="ALWAYS" />
+                <Button styleClass="refresh-button">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-sync-alt" />
+                        <Text>Actualiser</Text>
+                    </graphic>
+                </Button>
+                <Button styleClass="action-button">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-plus" />
+                        <Text>Nouveau prêt</Text>
+                    </graphic>
+                </Button>
+            </HBox>
+            <TabPane styleClass="dashboard-tabs">
+                <tabs>
+                    <Tab styleClass="dashboard-tab" text="Vue d'ensembe">
+                        <graphic>
+                            <FontIcon iconLiteral="fas-chart-bar" />
+                        </graphic>
+                        <content>
+                            <ScrollPane fitToWidth="true" styleClass="dashboard-scroll">
+                                <VBox spacing="20" styleClass="dashboard-content">
+                                    <TilePane hgap="15" prefColumns="4" vgap="15">
+                                        <VBox styleClass="stat-card">
+                                            <HBox spacing="10">
+                                                <VBox HBox.hgrow="ALWAYS">
+                                                    <Label styleClass="stat-label" text="Total des Membres" />
+                                                    <Label fx:id="TotalMembres" styleClass="stat-value" />
+                                                    <Label styleClass="stat-trend-positive" text="+12 ce mois-ci" />
+                                                </VBox>
+                                                <StackPane maxHeight="60.0" maxWidth="60.0" prefHeight="60.0" prefWidth="60.0" styleClass="stat-icon-container-red">
+                                                    <FontIcon iconLiteral="fas-users" styleClass="stat-icon" />
+                                                </StackPane>
+                                            </HBox>
+                                        </VBox>
+                                        <VBox styleClass="stat-card">
+                                            <HBox spacing="10">
+                                                <VBox HBox.hgrow="ALWAYS">
+                                                    <Label styleClass="stat-label" text="Livres Disponibles" />
+                                                    <Label fx:id="TotalLivDispo" styleClass="stat-value" />
+                                                    <Label styleClass="stat-info" text="Sur 520 livres au total" />
+                                                </VBox>
+                                                <StackPane prefHeight="60.0" prefWidth="60.0" styleClass="stat-icon-container-green">
+                                                    <FontIcon iconLiteral="fas-book-open" styleClass="stat-icon" />
+                                                </StackPane>
+                                            </HBox>
+                                        </VBox>
+                                        <VBox styleClass="stat-card">
+                                            <HBox spacing="10">
+                                                <VBox HBox.hgrow="ALWAYS">
+                                                    <Label styleClass="stat-label" text="Prêts en Cours" />
+                                                    <Label fx:id="TotalPretEnC" styleClass="stat-value" />
+                                                    <Label styleClass="stat-trend-warning" text="8 retours aujourd'hui" />
+                                                </VBox>
+                                                <StackPane prefHeight="60.0" prefWidth="60.0" styleClass="stat-icon-container-red">
+                                                    <FontIcon iconLiteral="fas-bookmark" styleClass="stat-icon" />
+                                                </StackPane>
+                                            </HBox>
+                                        </VBox>
+                                        <VBox styleClass="stat-card">
+                                            <HBox spacing="10">
+                                                <VBox HBox.hgrow="ALWAYS">
+                                                    <Label styleClass="stat-label" text="Retards" />
+                                                    <Label styleClass="stat-value" text="8" />
+                                                    <Label styleClass="stat-trend-negative" text="+2 cette semaine" />
+                                                </VBox>
+                                                <StackPane prefHeight="60.0" prefWidth="60.0" styleClass="stat-icon-container-green">
+                                                    <FontIcon iconLiteral="fas-clock" styleClass="stat-icon" />
+                                                </StackPane>
+                                            </HBox>
+                                        </VBox>
+                                    </TilePane>
+                                    <GridPane hgap="15" vgap="15">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50" />
+                                            <ColumnConstraints percentWidth="50" />
+                                        </columnConstraints>
+                                        <VBox styleClass="chart-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                            <Label styleClass="chart-title" text="Emprunts et Retours" />
+                                            <Label styleClass="chart-subtitle" text="Activité mensuelle" />
+                                            <BarChart fx:id="loansChart" legendVisible="true" prefHeight="180.0">
+                                                <xAxis>
+                                                    <CategoryAxis label="Mois" />
+                                                </xAxis>
+                                                <yAxis>
+                                                    <NumberAxis label="Nombre" />
+                                                </yAxis>
+                                            </BarChart>
+                                        </VBox>
+                                        <VBox styleClass="chart-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                            <Label styleClass="chart-title" text="Répartition des Livres" />
+                                            <Label styleClass="chart-subtitle" text="Par catégorie" />
+                                            <PieChart fx:id="categoryChart" legendVisible="true" prefHeight="180.0" />
+                                        </VBox>
+                              <rowConstraints>
+                                 <RowConstraints />
+                              </rowConstraints>
+                                    </GridPane>
+                                    <GridPane hgap="15" vgap="15">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="66" />
+                                            <ColumnConstraints percentWidth="34" />
+                                        </columnConstraints>
+                                        <VBox styleClass="activity-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                            <Label styleClass="section-title" text="Activité Récente" />
+                                            <Label styleClass="section-subtitle" text="Derniers prêts et retours" />
+                                            <VBox spacing="10" styleClass="activity-list">
+                                                <HBox styleClass="activity-item">
+                                                    <StackPane styleClass="activity-icon-container-red">
+                                                        <FontIcon iconLiteral="fas-bookmark" styleClass="activity-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="activity-title" text="Jean Dupont a emprunté &quot;Le Petit Prince&quot;" />
+                                                        <Label styleClass="activity-time" text="Il y a 35 minutes" />
+                                                    </VBox>
+                                                    <Label styleClass="activity-badge-loan" text="Emprunt" />
+                                                </HBox>
+                                                <HBox styleClass="activity-item">
+                                                    <StackPane styleClass="activity-icon-container-green">
+                                                        <FontIcon iconLiteral="fas-book-open" styleClass="activity-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="activity-title" text="Marie Laurent a rendu &quot;Madame Bovary&quot;" />
+                                                        <Label styleClass="activity-time" text="Il y a 2 heures" />
+                                                    </VBox>
+                                                    <Label styleClass="activity-badge-return" text="Retour" />
+                                                </HBox>
+                                                <HBox styleClass="activity-item">
+                                                    <StackPane styleClass="activity-icon-container-red">
+                                                        <FontIcon iconLiteral="fas-users" styleClass="activity-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="activity-title" text="Nouveau membre: Sophie Martin" />
+                                                        <Label styleClass="activity-time" text="Il y a 3 heures" />
+                                                    </VBox>
+                                                    <Label styleClass="activity-badge-registration" text="Inscription" />
+                                                </HBox>
+                                            </VBox>
+                                            <Button styleClass="link-button" text="Voir toute l'activité">
+                                                <graphic>
+                                                    <FontIcon iconLiteral="fas-arrow-right" />
+                                                </graphic>
+                                            </Button>
+                                        </VBox>
+                                        <VBox styleClass="popular-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                            <Label styleClass="section-title" text="Livres Populaires" />
+                                            <Label styleClass="section-subtitle" text="Les plus empruntés ce mois-ci" />
+                                            <VBox spacing="10" styleClass="popular-list">
+                                                <HBox styleClass="popular-item">
+                                                    <Label styleClass="popular-rank" text="1" />
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="popular-title" text="Le Petit Prince" />
+                                                        <Label styleClass="popular-author" text="Antoine de Saint-Exupéry" />
+                                                    </VBox>
+                                                    <Label styleClass="popular-count" text="24 emprunts" />
+                                                </HBox>
+                                                <HBox styleClass="popular-item">
+                                                    <Label styleClass="popular-rank" text="2" />
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="popular-title" text="L'Étranger" />
+                                                        <Label styleClass="popular-author" text="Albert Camus" />
+                                                    </VBox>
+                                                    <Label styleClass="popular-count" text="18 emprunts" />
+                                                </HBox>
+                                                <HBox styleClass="popular-item">
+                                                    <Label styleClass="popular-rank" text="3" />
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="popular-title" text="Madame Bovary" />
+                                                        <Label styleClass="popular-author" text="Gustave Flaubert" />
+                                                    </VBox>
+                                                    <Label styleClass="popular-count" text="15 emprunts" />
+                                                </HBox>
+                                                <HBox styleClass="popular-item">
+                                                    <Label styleClass="popular-rank" text="4" />
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="popular-title" text="Les Misérables" />
+                                                        <Label styleClass="popular-author" text="Victor Hugo" />
+                                                    </VBox>
+                                                    <Label styleClass="popular-count" text="12 emprunts" />
+                                                </HBox>
+                                                <HBox styleClass="popular-item">
+                                                    <Label styleClass="popular-rank" text="5" />
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="popular-title" text="Candide" />
+                                                        <Label styleClass="popular-author" text="Voltaire" />
+                                                    </VBox>
+                                                    <Label styleClass="popular-count" text="10 emprunts" />
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                              <rowConstraints>
+                                 <RowConstraints />
+                              </rowConstraints>
+                                    </GridPane>
+                                </VBox>
+                            </ScrollPane>
+                        </content>
+                    </Tab>
+                    <Tab styleClass="dashboard-tab" text="Activité">
+                        <graphic>
+                            <FontIcon iconLiteral="fas-chart-line" />
+                        </graphic>
+                        <content>
+                            <ScrollPane fitToWidth="true" styleClass="dashboard-scroll">
+                                <VBox spacing="20" styleClass="dashboard-content">
+                                    <GridPane hgap="15" prefHeight="350.0" vgap="15">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="66" />
+                                            <ColumnConstraints percentWidth="34" />
+                                        </columnConstraints>
+                                        <VBox styleClass="chart-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                            <Label styleClass="chart-title" text="Fréquentation Hebdomadaire" />
+                                            <Label styleClass="chart-subtitle" text="Nombre de visites par jour" />
+                                            <LineChart fx:id="visitsChart" prefHeight="150.0">
+                                                <xAxis>
+                                                    <CategoryAxis label="Jour" />
+                                                </xAxis>
+                                                <yAxis>
+                                                    <NumberAxis label="Visites" />
+                                                </yAxis>
+                                            </LineChart>
+                                        </VBox>
+                                        <VBox styleClass="chart-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                            <Label styleClass="chart-title" text="Taux d'Occupation" />
+                                            <Label styleClass="chart-subtitle" text="Places assises disponibles" />
+                                            <VBox spacing="15" styleClass="progress-list" stylesheets="@files/style.css">
+                                                <VBox spacing="5">
+                                                    <HBox alignment="CENTER_LEFT">
+                                                        <Label text="Salle de lecture principale" HBox.hgrow="ALWAYS" />
+                                                        <Label text="75%" />
+                                                    </HBox>
+                                                    <ProgressBar progress="0.75" styleClass="progress-bar-red" />
+                                                </VBox>
+                                                <VBox spacing="5">
+                                                    <HBox alignment="CENTER_LEFT">
+                                                        <Label text="Espace multimédia" HBox.hgrow="ALWAYS" />
+                                                        <Label text="50%" />
+                                                    </HBox>
+                                                    <ProgressBar progress="0.5" styleClass="progress-bar-red" />
+                                                </VBox>
+                                                <VBox spacing="5">
+                                                    <HBox alignment="CENTER_LEFT">
+                                                        <Label stylesheets="@files/style.css" text="Salle d'étude" HBox.hgrow="ALWAYS" />
+                                                        <Label text="90%" />
+                                                    </HBox>
+                                                    <ProgressBar progress="0.9" styleClass="progress-bar-red" />
+                                                </VBox>
+                                                <VBox spacing="5">
+                                                    <HBox alignment="CENTER_LEFT">
+                                                        <Label text="Espace enfants" HBox.hgrow="ALWAYS" />
+                                                        <Label text="30%" />
+                                                    </HBox>
+                                                    <ProgressBar progress="0.3" styleClass="progress-bar-red" />
+                                                </VBox>
+                                                <HBox alignment="CENTER" spacing="10" styleClass="places-info">
+                                                    <VBox>
+                                                        <Label styleClass="info-title" text="Places disponibles" />
+                                                        <Label styleClass="info-value" text="24 / 60" />
+                                                    </VBox>
+                                                    <Button styleClass="action-button" text="Réserver" />
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                              <rowConstraints>
+                                 <RowConstraints />
+                              </rowConstraints>
+                                    </GridPane>
+                                    <GridPane hgap="15" vgap="15">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50" />
+                                            <ColumnConstraints percentWidth="50" />
+                                        </columnConstraints>
+                                        <VBox styleClass="events-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                            <Label styleClass="section-title" text="Événements à venir" />
+                                            <Label styleClass="section-subtitle" text="Activités culturelles et littéraires" />
+                                            <VBox spacing="10" styleClass="events-list">
+                                                <HBox styleClass="event-item">
+                                                    <StackPane styleClass="event-icon-container-red">
+                                                        <FontIcon iconLiteral="fas-calendar" styleClass="event-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="event-title" text="Club de lecture" />
+                                                        <Label styleClass="event-time" text="15 avril 2025 - 18h00" />
+                                                    </VBox>
+                                                    <Button styleClass="small-button" text="S'inscrire" />
+                                                </HBox>
+                                                <HBox styleClass="event-item">
+                                                    <StackPane styleClass="event-icon-container-green">
+                                                        <FontIcon iconLiteral="fas-calendar" styleClass="event-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="event-title" text="Projection de film" />
+                                                        <Label styleClass="event-time" text="22 avril 2025 - 19h30" />
+                                                    </VBox>
+                                                    <Button styleClass="small-button" text="S'inscrire" />
+                                                </HBox>
+                                                <HBox styleClass="event-item">
+                                                    <StackPane styleClass="event-icon-container-red">
+                                                        <FontIcon iconLiteral="fas-calendar" styleClass="event-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="event-title" text="Rencontre avec l'auteur" />
+                                                        <Label styleClass="event-time" text="5 mai 2025 - 17h00" />
+                                                    </VBox>
+                                                    <Button styleClass="small-button" text="S'inscrire" />
+                                                </HBox>
+                                            </VBox>
+                                            <Button styleClass="link-button" text="Voir tous les événements">
+                                                <graphic>
+                                                    <FontIcon iconLiteral="fas-arrow-right" />
+                                                </graphic>
+                                            </Button>
+                                        </VBox>
+                                        <VBox styleClass="acquisitions-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                            <Label styleClass="section-title" text="Nouvelles Acquisitions" />
+                                            <Label styleClass="section-subtitle" text="Livres récemment ajoutés" />
+                                            <VBox spacing="10" styleClass="acquisitions-list">
+                                                <HBox styleClass="acquisition-item">
+                                                    <StackPane styleClass="book-icon-container">
+                                                        <FontIcon iconLiteral="fas-book" styleClass="book-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="book-title" text="La Promesse de l'aube" />
+                                                        <Label styleClass="book-info" text="Romain Gary - Ajouté le 02/04/2025" />
+                                                    </VBox>
+                                                    <Label styleClass="status-badge-available" text="Disponible" />
+                                                </HBox>
+                                                <HBox styleClass="acquisition-item">
+                                                    <StackPane styleClass="book-icon-container">
+                                                        <FontIcon iconLiteral="fas-book" styleClass="book-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="book-title" text="Sapiens: Une brève histoire de l'humanité" />
+                                                        <Label styleClass="book-info" text="Yuval Noah Harari - Ajouté le 28/03/2025" />
+                                                    </VBox>
+                                                    <Label styleClass="status-badge-reserved" text="Réservé" />
+                                                </HBox>
+                                                <HBox styleClass="acquisition-item">
+                                                    <StackPane styleClass="book-icon-container">
+                                                        <FontIcon iconLiteral="fas-book" styleClass="book-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="book-title" text="Le Comte de Monte-Cristo" />
+                                                        <Label styleClass="book-info" text="Alexandre Dumas - Ajouté le 25/03/2025" />
+                                                    </VBox>
+                                                    <Label styleClass="status-badge-available" text="Disponible" />
+                                                </HBox>
+                                            </VBox>
+                                            <Button styleClass="link-button" text="Voir toutes les acquisitions">
+                                                <graphic>
+                                                    <FontIcon iconLiteral="fas-arrow-right" />
+                                                </graphic>
+                                            </Button>
+                                        </VBox>
+                              <rowConstraints>
+                                 <RowConstraints />
+                              </rowConstraints>
+                                    </GridPane>
+                                </VBox>
+                            </ScrollPane>
+                        </content>
+                    </Tab>
+                    <Tab styleClass="dashboard-tab" text="Alertes">
+                        <graphic>
+                            <FontIcon iconLiteral="fas-exclamation-circle" styleClass="tab-icon" />
+                        </graphic>
+                        <content>
+                            <ScrollPane fitToWidth="true" styleClass="dashboard-scroll">
+                                <VBox spacing="20" styleClass="dashboard-content">
+                                    <VBox styleClass="alerts-card">
+                                        <Label styleClass="section-title" text="Retards de Retour" />
+                                        <Label styleClass="section-subtitle" text="Livres à retourner en urgence" />
+
+                                        <VBox spacing="10" styleClass="alerts-list">
+                                            <HBox styleClass="alert-item-critical">
+                                                <StackPane prefHeight="50.0" prefWidth="50.0" styleClass="alert-icon-container">
+                                                    <FontIcon iconLiteral="fas-exclamation-circle" styleClass="alert-icon" />
+                                                </StackPane>
+                                                <VBox HBox.hgrow="ALWAYS">
+                                                    <HBox>
+                                                        <Label styleClass="alert-name" text="Marie Laurent" HBox.hgrow="ALWAYS" />
+                                                        <Label styleClass="alert-days" text="20 jours de retard" />
+                                                    </HBox>
+                                                    <Label styleClass="alert-book" text="Les Misérables - Victor Hugo" />
+                                                    <Label styleClass="alert-date" text="Date limite: 11/03/2025" />
+                                                </VBox>
+                                                <Button styleClass="notify-button" text="Notifier" />
+                                            </HBox>
+                                            <HBox styleClass="alert-item-critical">
+                                                <StackPane prefHeight="50.0" prefWidth="50.0" styleClass="alert-icon-container">
+                                                    <FontIcon iconLiteral="fas-exclamation-circle" styleClass="alert-icon" />
+                                                </StackPane>
+                                                <VBox HBox.hgrow="ALWAYS">
+                                                    <HBox>
+                                                        <Label styleClass="alert-name" text="Thomas Bernard" HBox.hgrow="ALWAYS" />
+                                                        <Label styleClass="alert-days" text="15 jours de retard" />
+                                                    </HBox>
+                                                    <Label styleClass="alert-book" text="Madame Bovary - Gustave Flaubert" />
+                                                    <Label styleClass="alert-date" text="Date limite: 16/03/2025" />
+                                                </VBox>
+                                                <Button styleClass="notify-button" text="Notifier" />
+                                            </HBox>
+                                            <HBox styleClass="alert-item-warning">
+                                                <StackPane prefHeight="50.0" prefWidth="50.0" styleClass="alert-icon-container">
+                                                    <FontIcon iconLiteral="fas-exclamation-circle" styleClass="alert-icon" />
+                                                </StackPane>
+                                                <VBox HBox.hgrow="ALWAYS">
+                                                    <HBox>
+                                                        <Label styleClass="alert-name" text="Sophie Martin" HBox.hgrow="ALWAYS" />
+                                                        <Label styleClass="alert-days-warning" text="5 jours de retard" />
+                                                    </HBox>
+                                                    <Label styleClass="alert-book" text="L'Étranger - Albert Camus" />
+                                                    <Label styleClass="alert-date" text="Date limite: 26/03/2025" />
+                                                </VBox>
+                                                <Button styleClass="notify-button" text="Notifier" />
+                                            </HBox>
+                                        </VBox>
+                                    </VBox>
+                                    <GridPane hgap="15" vgap="15">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50" />
+                                            <ColumnConstraints percentWidth="50" />
+                                        </columnConstraints>
+                                        <VBox styleClass="order-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                            <Label styleClass="section-title" text="Livres à Commander" />
+                                            <Label styleClass="section-subtitle" text="Stock faible ou épuisé" />
+
+                                            <VBox spacing="10" styleClass="order-list">
+                                                <HBox styleClass="order-item">
+                                                    <StackPane styleClass="book-icon-container-warning">
+                                                        <FontIcon iconLiteral="fas-book" styleClass="book-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="book-title" text="Le Rouge et le Noir" />
+                                                        <Label styleClass="book-info" text="Stendhal - 1 exemplaire restant" />
+                                                    </VBox>
+                                                    <Button styleClass="small-button" text="Commander" />
+                                                </HBox>
+                                                <HBox styleClass="order-item">
+                                                    <StackPane styleClass="book-icon-container-critical">
+                                                        <FontIcon iconLiteral="fas-book" styleClass="book-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="book-title" text="Notre-Dame de Paris" />
+                                                        <Label styleClass="book-info" text="Victor Hugo - Épuisé" />
+                                                    </VBox>
+                                                    <Button styleClass="small-button" text="Commander" />
+                                                </HBox>
+                                                <HBox styleClass="order-item">
+                                                    <StackPane styleClass="book-icon-container-warning">
+                                                        <FontIcon iconLiteral="fas-book" styleClass="book-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="book-title" text="Bel-Ami" />
+                                                        <Label styleClass="book-info" text="Guy de Maupassant - 2 exemplaires restants" />
+                                                    </VBox>
+                                                    <Button styleClass="small-button" text="Commander" />
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                                        <VBox styleClass="maintenance-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                            <Label styleClass="section-title" text="Maintenance Système" />
+                                            <Label styleClass="section-subtitle" text="Alertes techniques" />
+
+                                            <VBox spacing="10" styleClass="maintenance-list">
+                                                <HBox styleClass="maintenance-item-info">
+                                                    <StackPane styleClass="maintenance-icon-container">
+                                                        <FontIcon iconLiteral="fas-bell" styleClass="maintenance-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="maintenance-title" text="Mise à jour disponible" />
+                                                        <Label styleClass="maintenance-info" text="Version 1.2.5 disponible - Correctifs de sécurité" />
+                                                    </VBox>
+                                                    <Button styleClass="small-button" text="Installer" />
+                                                </HBox>
+                                                <HBox styleClass="maintenance-item-warning">
+                                                    <StackPane styleClass="maintenance-icon-container">
+                                                        <FontIcon iconLiteral="fas-bell" styleClass="maintenance-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="maintenance-title" text="Sauvegarde programmée" />
+                                                        <Label styleClass="maintenance-info" text="Prévue pour ce soir à 23h00" />
+                                                    </VBox>
+                                                    <Button styleClass="small-button" text="Reprogrammer" />
+                                                </HBox>
+                                                <HBox styleClass="maintenance-item-success">
+                                                    <StackPane styleClass="maintenance-icon-container">
+                                                        <FontIcon iconLiteral="fas-bell" styleClass="maintenance-icon" />
+                                                    </StackPane>
+                                                    <VBox HBox.hgrow="ALWAYS">
+                                                        <Label styleClass="maintenance-title" text="Espace disque suffisant" />
+                                                        <Label styleClass="maintenance-info" text="85% d'espace libre" />
+                                                    </VBox>
+                                                    <Button disable="true" styleClass="small-button" text="Vérifier" />
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                              <rowConstraints>
+                                 <RowConstraints />
+                              </rowConstraints>
+                                    </GridPane>
+                                </VBox>
+                            </ScrollPane>
+                        </content>
+                    </Tab>
+                </tabs>
+            </TabPane>
+        </VBox>
+    </top>
+    <center>
+        <!-- Vide intentionnellement -->
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_LEFT" styleClass="dashboard-footer">
+            <Label styleClass="footer-text" text="© 2025 Alliance Française. Tous droits réservés." />
+            <HBox HBox.hgrow="ALWAYS" />
+            <Label styleClass="footer-text" text="GestionBiblio v1.0.0 | Dernière mise à jour: 02/04/2025" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

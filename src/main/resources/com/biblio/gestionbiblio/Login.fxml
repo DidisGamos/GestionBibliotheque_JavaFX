@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="450.0" styleClass="login-background" stylesheets="@files/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biblio.gestionbiblio.LoginController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" layoutX="85.0" prefHeight="176.0" prefWidth="279.0">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/Alliance_Francaise-logo-EEC1EE1CC6-seeklogo.com.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" styleClass="logo-title" stylesheets="@files/style.css" text="Alliance Française" />
+                  <Label styleClass="logo-subtitle" stylesheets="@files/style.css" text="Système de Gestion de Bibliothèque" />
+               </children>
+            </VBox>
+            <Separator layoutX="50.0" layoutY="182.0" prefWidth="350.0" />
+            <VBox layoutX="65.0" layoutY="198.0" prefHeight="329.0" prefWidth="319.0" spacing="20.0">
+               <children>
+                  <Label styleClass="logo-title" stylesheets="@files/style.css" text="Connexion" />
+                  <VBox prefHeight="46.0" prefWidth="319.0">
+                     <children>
+                        <Label styleClass="form-label" stylesheets="@files/style.css" text="Nom d'utilisateur" />
+                        <TextField fx:id="ForNamesLogin" promptText="Entrez votre nom d'utilisateur" styleClass="input-icon" stylesheets="@files/style.css" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="40.0" prefWidth="319.0">
+                     <children>
+                        <Label styleClass="form-label" stylesheets="@files/style.css" text="Mot de passe" />
+                        <PasswordField fx:id="ForPwdLogin" promptText="Entrez votre mot de passe" styleClass="input-icon" stylesheets="@files/style.css" />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="319.0">
+                     <children>
+                        <Hyperlink styleClass="forgot-password" stylesheets="@files/style.css" text="Mot de passe oublié ?" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="ForConnected" maxWidth="Infinity" mnemonicParsing="false" onAction="#ForConnected" styleClass="button-primary" stylesheets="@files/style.css" text="Se connecter" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="Vous n'avez pas de compte?" />
+                        <Hyperlink fx:id="OpenRegister" styleClass="register-link" stylesheets="@files/style.css" text="S'inscrire" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

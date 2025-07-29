@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane hgap="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="1322.0" styleClass="grid" stylesheets="@files/style.css" vgap="24.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biblio.gestionbiblio.PretsController">
+    <columnConstraints>
+        <ColumnConstraints percentWidth="33" />
+        <ColumnConstraints percentWidth="67" />
+    </columnConstraints>
+    <VBox styleClass="card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <children>
+            <VBox styleClass="card-header">
+                <children>
+                    <Label styleClass="card-title" text="Nouveau Prêt" />
+                    <Label styleClass="card-description" text="Enregistrer un nouveau prêt de livre" />
+                </children>
+            </VBox>
+            <VBox styleClass="card-content">
+                <children>
+                    <VBox styleClass="form-group">
+                        <children>
+                            <Label styleClass="form-label" text="ID Prêt" />
+                            <TextField fx:id="IdPreter" promptText="ID Prêt" />
+                        </children>
+                    </VBox>
+                    <VBox styleClass="form-group">
+                        <children>
+                            <Label styleClass="form-label" text="Membre" />
+                            <ComboBox fx:id="RecupMembre" maxWidth="Infinity" promptText="Sélectionner un membre" />
+                        </children>
+                    </VBox>
+                    <VBox styleClass="form-group">
+                        <children>
+                            <Label styleClass="form-label" text="Livre" />
+                            <ComboBox fx:id="RecupLivre" maxWidth="Infinity" promptText="Sélectionner un livre" />
+                        </children>
+                    </VBox>
+                    <VBox styleClass="form-group">
+                        <children>
+                            <Label styleClass="form-label" text="Date de Prêt" />
+                            <DatePicker fx:id="DatePret" maxWidth="Infinity" promptText="Sélectionner une date" />
+                        </children>
+                    </VBox>
+                    <VBox styleClass="form-group">
+                        <children>
+                            <Label styleClass="form-label" text="Date de Retour" />
+                            <DatePicker fx:id="DateRetour" maxWidth="Infinity" promptText="Sélectionner une date" />
+                        </children>
+                    </VBox>
+                    <HBox styleClass="card-footer">
+                        <children>
+                            <Button fx:id="CancelBtnPret" onAction="#handleCancel" styleClass="button-outline" text="Annuler" />
+                            <Button fx:id="SaveBtnPret" onAction="#handleSavePret" styleClass="button-primary" text="Enregistrer" />
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+        </children>
+    </VBox>
+    <VBox styleClass="card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <children>
+            <VBox styleClass="card-header">
+                <children>
+                    <HBox>
+                        <children>
+                            <VBox HBox.hgrow="ALWAYS">
+                                <children>
+                                    <Label styleClass="card-title" text="Liste des Prêts" />
+                                    <Label styleClass="card-description" text="Gérer les prêts en cours" />
+                                </children>
+                            </VBox>
+                            <HBox spacing="8">
+                                <children>
+                                    <Button styleClass="button-outline, button-small" text="Se notifier">
+                              <graphic>
+                                 <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@assets/icons8_envelope_512px.png" />
+                                    </image>
+                                 </ImageView>
+                              </graphic>
+                                    </Button>
+                                    <Button styleClass="button-outline, button-small" text="Reçu PDF">
+                              <graphic>
+                                 <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@assets/icons8_print_480px.png" />
+                                    </image>
+                                 </ImageView>
+                              </graphic>
+                                    </Button>
+                                </children>
+                            </HBox>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+            <TableView fx:id="TablePrets" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="ForIDPrets" prefWidth="60" text="ID" />
+                    <TableColumn fx:id="ForRecupMembre" prefWidth="100" text="Membre" />
+                    <TableColumn fx:id="ForRecupLivre" prefWidth="120" text="Livre" />
+                    <TableColumn fx:id="ForDatePrets" prefWidth="100" text="Date Prêt" />
+                    <TableColumn fx:id="ForDateRetourPrets" prefWidth="100" text="Date Retour" />
+                    <TableColumn fx:id="ForStatutPrets" prefWidth="100" text="Statut" />
+                    <TableColumn fx:id="ForActPrets" prefWidth="195" text="Actions" />
+                    <TableColumn fx:id="ForGeneratePDF" prefWidth="60" text="PDF"/>
+                </columns>
+            </TableView>
+        </children>
+    </VBox>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane hgap="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="1322.0" styleClass="grid" stylesheets="@files/style.css" vgap="24.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biblio.gestionbiblio.RapportsController">
+    <columnConstraints>
+        <ColumnConstraints percentWidth="50" />
+        <ColumnConstraints percentWidth="50" />
+    </columnConstraints>
+    <children>
+        <VBox styleClass="card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <children>
+                <VBox styleClass="card-header">
+                    <children>
+                        <Label styleClass="card-title" text="Prêts par Période" />
+                        <Label styleClass="card-description" text="Liste des prêts entre deux dates" />
+                    </children>
+                </VBox>
+                <VBox styleClass="card-content">
+                    <children>
+                        <HBox spacing="16">
+                            <children>
+                                <VBox styleClass="form-group" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="form-label" text="Date de début" />
+                                        <DatePicker fx:id="DateDebutList" maxWidth="Infinity" promptText="Sélectionner" />
+                                    </children>
+                                </VBox>
+                                <VBox styleClass="form-group" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="form-label" text="Date de fin" />
+                                        <DatePicker fx:id="DateFinList" maxWidth="Infinity" promptText="Sélectionner" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox spacing="16">
+                            <children>
+                                <Button fx:id="GenererRapportList" maxWidth="Infinity" styleClass="button-primary"
+                                        text="Générer Rapport" HBox.hgrow="ALWAYS" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+        <VBox styleClass="card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <children>
+                <VBox styleClass="card-header">
+                    <children>
+                        <Label styleClass="card-title" text="Livres Non Rendus" />
+                        <Label styleClass="card-description" text="Liste des membres avec des livres en retard" />
+                    </children>
+                </VBox>
+                <TableView fx:id="TableauNonRenduEmail" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="MembreEmail" prefWidth="120" text="Membre" />
+                        <TableColumn fx:id="LivreEmail" prefWidth="120" text="Livre" />
+                        <TableColumn fx:id="DateLimiteEmail" prefWidth="100" text="Date Limite" />
+                        <TableColumn fx:id="JourRetardEmail" prefWidth="100" text="Jours de Retard" />
+                        <TableColumn fx:id="ActionEmail" prefWidth="100" text="Actions" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+        <VBox styleClass="card" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <children>
+                <VBox styleClass="card-header">
+                    <children>
+                        <Label styleClass="card-title" text="Historique par Membre" />
+                        <Label styleClass="card-description" text="Historique des prêts et rendus d'un membre" />
+                    </children>
+                </VBox>
+                <VBox styleClass="card-content">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="16">
+                            <children>
+                                <VBox maxWidth="300" styleClass="form-group" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="form-label" text="Sélectionner un membre" />
+                                        <ComboBox fx:id="ListMembreRapports" maxWidth="Infinity" promptText="Sélectionner un membre" />
+                                    </children>
+                                </VBox>
+                                <Button fx:id="BtnShowHistory" onAction="#handleShowAllHistory" styleClass="button-primary" text="Afficher l'historique" />
+                            </children>
+                        </HBox>
+                        <TableView fx:id="TableMembreRapports" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="TypeColumnR" prefWidth="80" text="Type" />
+                                <TableColumn fx:id="LivreColumnR" prefWidth="150" text="Livre" />
+                                <TableColumn fx:id="DatePretColumnR" prefWidth="120" text="Date Prêt" />
+                                <TableColumn fx:id="DateRetourPrevueColumnR" prefWidth="150" text="Date Retour Prévue" />
+                                <TableColumn fx:id="DateRetourReelleColumnR" prefWidth="150" text="Date Retour Réelle" />
+                                <TableColumn fx:id="StatutColumnR" prefWidth="100" text="Statut" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

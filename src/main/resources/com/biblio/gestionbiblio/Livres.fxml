@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<GridPane hgap="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="1322.0" styleClass="grid" stylesheets="@files/style.css" vgap="24.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biblio.gestionbiblio.LivreController">
+    <columnConstraints>
+        <ColumnConstraints percentWidth="33" />
+        <ColumnConstraints percentWidth="67" />
+    </columnConstraints>
+   <children>
+      <VBox styleClass="card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+         <children>
+             <VBox styleClass="card-header">
+                 <children>
+                     <VBox styleClass="card-header">
+                         <children>
+                             <Label styleClass="card-title" stylesheets="@files/style.css" text="Ajouter un Livre" />
+                             <Label styleClass="card-description" stylesheets="@files/style.css" text="Enregistrer un nouveau livre dans le système" />
+                         </children>
+                     </VBox>
+                 </children>
+             </VBox>
+            <VBox styleClass="card-content">
+               <children>
+                  <VBox styleClass="form-group">
+                     <children>
+                        <Label styleClass="form-label" text="ID Livre" />
+                        <TextField fx:id="IdLivre" promptText="ID Livre" />
+                     </children>
+                  </VBox>
+                   <VBox styleClass="form-group">
+                       <children>
+                           <Label styleClass="form-label" text="Désignation" />
+                           <TextField fx:id="TitleLivre" promptText="Titre du Livre" />
+                       </children>
+                   </VBox>
+                   <VBox styleClass="form-group">
+                       <children>
+                           <Label styleClass="form-label" text="Exemplaires" />
+                           <TextField fx:id="NbrExemplaire" promptText="Nombre d'exemplaires" />
+                       </children>
+                   </VBox>
+               </children>
+            </VBox>
+             <HBox styleClass="card-footer">
+                 <children>
+                     <Button fx:id="CancelLivre" onAction="#CancelPersAction" styleClass="button-outline" text="Annuler" />
+                     <Button fx:id="SaveLivre" onAction="#SaveLivreAction" styleClass="button-primary" text="Enregistrer" />
+                 </children>
+             </HBox>
+         </children>
+      </VBox>
+       <VBox styleClass="card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+           <children>
+               <VBox styleClass="card-header" stylesheets="@files/style.css">
+                   <children>
+                       <HBox>
+                         <children>
+                             <VBox HBox.hgrow="ALWAYS">
+                                <children>
+                                    <Label styleClass="card-title" text="Catalogue des Livres" />
+                                    <Label styleClass="card-description" text="Gérer les livres disponibles" />
+                                </children>
+                             </VBox>
+                             <StackPane styleClass="search-container">
+                                 <children>
+                                     <FontIcon iconLiteral="fas-search" styleClass="search-icon" />
+                                     <TextField fx:id="SearchLivre" onAction="#initialize" promptText="Rechercher un livre..." styleClass="search-field" stylesheets="@files/style.css" />
+                                 </children>
+                             </StackPane>
+                         </children>
+                       </HBox>
+                   </children>
+               </VBox>
+               <TableView fx:id="livresTable" stylesheets="@files/style.css" VBox.vgrow="ALWAYS">
+                   <columns>
+                       <TableColumn fx:id="RowIDLivre" prefWidth="80" text="ID" />
+                       <TableColumn fx:id="RowDesignLivre" prefWidth="300" text="Désignation" />
+                       <TableColumn fx:id="RowExpLivre" prefWidth="100" text="Exemplaires" />
+                       <TableColumn fx:id="RowDispoLivre" prefWidth="100" text="Disponible" />
+                       <TableColumn fx:id="RowActLivre" prefWidth="255" text="Action" />
+                   </columns>
+                   <styleClass>
+                       <String fx:value="table-view" />
+                       <String fx:value="table-row-cell" />
+                       <String fx:value="column-header" />
+                   </styleClass>
+               </TableView>
+           </children>
+       </VBox>
+   </children>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

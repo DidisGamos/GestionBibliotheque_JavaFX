@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" styleClass="root-container" stylesheets="@files/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biblio.gestionbiblio.DashboardController">
+    <HBox styleClass="header" stylesheets="@files/style.css">
+      <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-container">
+         <image>
+            <Image url="@assets/Alliance_Francaise-logo-EEC1EE1CC6-seeklogo.com.png" />
+         </image>
+      </ImageView>
+        <VBox>
+            <Label styleClass="logo-title" text="Alliance Française" />
+            <Label styleClass="logo-subtitle" text="Système de Gestion de Bibliothèque" />
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+
+        <HBox styleClass="header-actions">
+         <Button fx:id="AboutApp" mnemonicParsing="false" styleClass="icon-button" stylesheets="@files/style.css">
+            <graphic>
+               <FontIcon iconLiteral="fas-info-circle">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </FontIcon>
+            </graphic>
+         </Button>
+            <Button styleClass="icon-button">
+            <graphic>
+               <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@assets/doorbell_96px.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            </Button>
+            <Button fx:id="DeconnectDash" onAction="#initialize" styleClass="icon-button">
+            <graphic>
+               <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@assets/export_96px.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            </Button>
+        </HBox>
+    </HBox>
+   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="content-container" stylesheets="@files/style.css" VBox.vgrow="ALWAYS">
+      <children>
+         <TabPane fx:id="mainTabPane" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: none;" styleClass="main-tabs" stylesheets="@files/style.css" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+             <Tab fx:id="tablesTab" closable="false" text="Tableau à bord">
+                 <fx:include source="TableBoards.fxml"/>
+                 <graphic>
+                     <FontIcon iconLiteral="fas-chart-bar"/>
+                 </graphic>
+             </Tab>
+             <Tab fx:id="membresTab" closable="false" text="Membres">
+                   <fx:include source="Membres.fxml" />
+                   <graphic>
+                       <FontIcon iconLiteral="fas-users" iconSize="16" />
+                   </graphic>
+               </Tab>
+               <Tab fx:id="livresTab" closable="false" text="Livres">
+                   <fx:include source="Livres.fxml" />
+                   <graphic>
+                       <FontIcon iconLiteral="fas-book-open" iconSize="16" />
+                   </graphic>
+               </Tab>
+               <Tab fx:id="pretsTab" closable="false" text="Prêts">
+                   <fx:include source="Prets.fxml" />
+                   <graphic>
+                       <FontIcon iconLiteral="fas-calendar" iconSize="16" />
+                   </graphic>
+               </Tab>
+               <Tab fx:id="rendusTab" closable="false" text="Rendus">
+                   <fx:include source="Rendus.fxml" />
+                   <graphic>
+                       <FontIcon iconLiteral="fas-file-alt" iconSize="16" />
+                   </graphic>
+               </Tab>
+             <Tab fx:id="rapportsTab" closable="false" text="Rapports">
+                 <fx:include source="Rapports.fxml" />
+                 <graphic>
+                     <FontIcon iconLiteral="fas-print" iconSize="16" />
+                 </graphic>
+             </Tab>
+         </TabPane>
+      </children>
+   </VBox>
+</VBox>
