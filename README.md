@@ -1,64 +1,79 @@
+# 📚 Gestion d’une bibliothèque - JavaFX
 
-# 💧⚡ Gestion de paiement d’eau et d’électricité
+## 📌 Description  
+Application desktop en JavaFX pour gérer une bibliothèque : gestion des livres, membres, prêts et retours.
 
-## 📌 Description
-Application PHP permettant de gérer la facturation et le paiement des consommations d’eau et d’électricité des clients.  
-Elle inclut la gestion des clients, compteurs, relevés, calcul automatique des montants dus, et suivi des paiements.
+## 🚀 Fonctionnalités  
+- Gestion des livres (ajout, modification, suppression)  
+- Gestion des membres  
+- Gestion des prêts et retours  
+- Recherche et filtres  
+- Statistiques diverses  
 
-## 🚀 Fonctionnalités
-- Gestion des clients (ajout, modification, suppression)  
-- Gestion des compteurs (eau et électricité)  
-- Enregistrement des relevés de consommation  
-- Calcul automatique des factures (consommation × prix unitaire)  
-- Gestion des paiements et historique  
-- Génération de reçus PDF (optionnel)  
-- Statistiques et rapports  
+## 🛠️ Technologies utilisées  
+- Java  
+- JavaFX  
+- PostgreSQL  
+- JDBC (connexion base de données)  
+- IDE recommandé : IntelliJ IDEA  
 
-## 🛠️ Technologies utilisées
-- PHP  
-- MySQL  
-- HTML, CSS, Bootstrap, JavaScript  
-- XAMPP (serveur local)  
+## 📂 Structure du projet  
 
-## 📂 Structure du projet
-
-## ⚡ Installation & Utilisation
-
-1. **Cloner le dépôt**  
-```bash
-git clone https://github.com/DidisGamos/PHP_Project.git
-
-```
-
-2. **Copier le projet dans le dossier XAMPP**  
-   Exemple : C:/xampp/htdocs/project_php
-
-
-3. **Importer la base de données**  
-- Ouvrir **phpMyAdmin** via : [http://localhost/phpmyadmin](http://localhost/phpmyadmin)  
-- Créer une base de données (exemple : `gestion_paiement`)  
-- Importer le fichier SQL situé dans `/php_brute/db/payment.sql`
-
-4. **Configurer la connexion à la base dans le projet**  
-Modifier le fichier :  /php_brute/src/config.php
-
-avec tes paramètres (hôte, utilisateur, mot de passe, nom de la base)
-
-5. **Démarrer le serveur XAMPP**  
-Lancer **Apache** et **MySQL** via le panneau de contrôle XAMPP
-
-6. **Accéder à l’application**  
-Ouvrir dans un navigateur :  http://localhost/project_php
-
+/src # Code source Java
+/db # Scripts et fichiers de base de données
+README.md # Documentation
 
 ---
 
-## 📸 Aperçu  
-<img width="2160" height="1479" alt="work1" src="https://github.com/user-attachments/assets/c8dde055-34f9-4eed-94e1-f16e59c66843" />
 
+## 🗄️ Base de données PostgreSQL  
+Le fichier de base de données est situé ici : ..\GestionBibliothequeAllFrancaise\db\DB_Biblio
+
+---
+
+
+### Installation de la base PostgreSQL  
+1. Installer PostgreSQL (si ce n’est pas déjà fait).  
+2. Ouvrir pgAdmin ou un terminal.  
+3. Créer une nouvelle base de données (exemple : `bibliotheque`).  
+4. Importer le script SQL situé dans `DB_Biblio` :  
+   - via pgAdmin : clic droit sur la base → Restore ou Import → choisir le fichier SQL.  
+   - ou en ligne de commande :  
+   ```bash
+   psql -U utilisateur -d bibliotheque -f "..\GestionBibliothequeAllFrancaise\db\DB_Biblio\script.sql"
+
+⚡ Installation & utilisation
+1. Cloner le dépôt :
+
+```bash
+git clone https://github.com/DidisGamos/GestionBibliotheque_JavaFX.git
+
+```
+
+---
+
+2. Importer la base PostgreSQL comme indiqué ci-dessus.
+
+3. Configurer la connexion JDBC dans le projet Java (exemple dans config.properties ou directement dans le code) :
+```bash
+db.url=jdbc:postgresql://localhost:5432/bibliotheque
+db.user=ton_utilisateur
+db.password=ton_mot_de_passe
+
+```
+
+4. Ouvrir le projet dans IntelliJ IDEA ou un autre IDE Java.
+
+5. Compiler et lancer l’application.
+
+📸 Aperçu
+<img width="2160" height="1436" alt="work2" src="https://github.com/user-attachments/assets/4bfc9525-6c47-4a82-80cd-ce4aac6df232" />
+
+
+📄 Auteur
+Didis Gamos — @DidisGamos
 
 ---
 
 ## 📄 Auteur  
 Didis Gamos — [@DidisGamos](https://github.com/DidisGamos)
-
