@@ -1,0 +1,298 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 17.4
+-- Dumped by pg_dump version 17.4
+
+-- Started on 2025-08-10 10:34:35
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 4 (class 2615 OID 2200)
+-- Name: public; Type: SCHEMA; Schema: -; Owner: pg_database_owner
+--
+
+CREATE SCHEMA public;
+
+
+ALTER SCHEMA public OWNER TO pg_database_owner;
+
+--
+-- TOC entry 4939 (class 0 OID 0)
+-- Dependencies: 4
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 220 (class 1259 OID 16442)
+-- Name: livre; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.livre (
+    idlivre text DEFAULT 50 NOT NULL,
+    designation text DEFAULT 150,
+    exemplaire integer DEFAULT 100
+);
+
+
+ALTER TABLE public.livre OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 16420)
+-- Name: membre; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.membre (
+    idpers text DEFAULT 100 NOT NULL,
+    nom text DEFAULT 200,
+    sexe text DEFAULT 100,
+    age integer DEFAULT 50,
+    contact text DEFAULT 150
+);
+
+
+ALTER TABLE public.membre OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 16498)
+-- Name: preter; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.preter (
+    idpret character varying(50) NOT NULL,
+    idpers character varying(50),
+    idlivre character varying(50),
+    datepret timestamp without time zone NOT NULL,
+    dateretour date
+);
+
+
+ALTER TABLE public.preter OWNER TO postgres;
+
+--
+-- TOC entry 222 (class 1259 OID 16513)
+-- Name: rendre; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.rendre (
+    idrendu character varying(50) NOT NULL,
+    idpers character varying(50),
+    idlivre character varying(50),
+    daterendu timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.rendre OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 16398)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id_users integer NOT NULL,
+    username text DEFAULT 100,
+    email text DEFAULT 200,
+    password text DEFAULT 100
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16397)
+-- Name: users_id_users_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.users ALTER COLUMN id_users ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.users_id_users_seq
+    START WITH 1
+    INCREMENT BY 10
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 4931 (class 0 OID 16442)
+-- Dependencies: 220
+-- Data for Name: livre; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.livre (idlivre, designation, exemplaire) FROM stdin;
+L002	Une aventure de Mlle Charlotte	6
+L001	Lire est dangereux	8
+L003	Roland Léléfan	5
+L004	Les 4 accords toltèques	5
+L010	Sapiens : Une brève histoire de l’humanité	10
+L009	Eragon 	1
+L33	JAVA	3
+\.
+
+
+--
+-- TOC entry 4930 (class 0 OID 16420)
+-- Dependencies: 219
+-- Data for Name: membre; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.membre (idpers, nom, sexe, age, contact) FROM stdin;
+M01	Didis	Masculin	22	didisgamos@gmail.com
+M04	Jessica	Féminin	21	jessicaharena@gmail.com
+M05	Fenitra	Masculin	20	onyfenitra@gmail.com
+M06	Sarobidy	Masculin	20	herimalalaandriamboavonjy@gmail.com
+M08	Herllandys Amoros Christy	Masculin	21	herllandysamoroschristy@gmail.com
+M001	Cathalie	Féminin	17	cathalie91@gmail.com
+\.
+
+
+--
+-- TOC entry 4932 (class 0 OID 16498)
+-- Dependencies: 221
+-- Data for Name: preter; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.preter (idpret, idpers, idlivre, datepret, dateretour) FROM stdin;
+\.
+
+
+--
+-- TOC entry 4933 (class 0 OID 16513)
+-- Dependencies: 222
+-- Data for Name: rendre; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.rendre (idrendu, idpers, idlivre, daterendu) FROM stdin;
+R002	M01	L003	2025-04-14 00:00:00
+\.
+
+
+--
+-- TOC entry 4929 (class 0 OID 16398)
+-- Dependencies: 218
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id_users, username, email, password) FROM stdin;
+151	Didis	didisgamos@gmail.com	$2a$10$i0Df38oBaJaXSGl0A3JrJOEPpzIVpmYDGY5jo5.ETLWgLhH4bg3RC
+161	Herllandys	herllandysamoroschristy@gmail.com	$2a$10$dNpjWpJkOGJphZvCxEXdFOv/LFR4X1xBqMlHzJXJLZr51cXoz3kYG
+171	DidisG	herllandysamoroschristy2022@gmail.com	$2a$10$5XpBpcDt1BCsxMWGNF3iledqI2zxuxcRhIUg4hV7FC6i10D..ozXK
+\.
+
+
+--
+-- TOC entry 4940 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: users_id_users_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_users_seq', 171, true);
+
+
+--
+-- TOC entry 4774 (class 2606 OID 16451)
+-- Name: livre livre_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.livre
+    ADD CONSTRAINT livre_pkey PRIMARY KEY (idlivre);
+
+
+--
+-- TOC entry 4772 (class 2606 OID 16431)
+-- Name: membre membre_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.membre
+    ADD CONSTRAINT membre_pkey PRIMARY KEY (idpers);
+
+
+--
+-- TOC entry 4776 (class 2606 OID 16502)
+-- Name: preter preter_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.preter
+    ADD CONSTRAINT preter_pkey PRIMARY KEY (idpret);
+
+
+--
+-- TOC entry 4778 (class 2606 OID 16517)
+-- Name: rendre rendre_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rendre
+    ADD CONSTRAINT rendre_pkey PRIMARY KEY (idrendu);
+
+
+--
+-- TOC entry 4770 (class 2606 OID 16407)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id_users);
+
+
+--
+-- TOC entry 4779 (class 2606 OID 16508)
+-- Name: preter preter_idlivre_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.preter
+    ADD CONSTRAINT preter_idlivre_fkey FOREIGN KEY (idlivre) REFERENCES public.livre(idlivre) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 4780 (class 2606 OID 16503)
+-- Name: preter preter_idpers_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.preter
+    ADD CONSTRAINT preter_idpers_fkey FOREIGN KEY (idpers) REFERENCES public.membre(idpers) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 4781 (class 2606 OID 16523)
+-- Name: rendre rendre_idlivre_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rendre
+    ADD CONSTRAINT rendre_idlivre_fkey FOREIGN KEY (idlivre) REFERENCES public.livre(idlivre) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 4782 (class 2606 OID 16518)
+-- Name: rendre rendre_idpers_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rendre
+    ADD CONSTRAINT rendre_idpers_fkey FOREIGN KEY (idpers) REFERENCES public.membre(idpers) ON DELETE CASCADE;
+
+
+-- Completed on 2025-08-10 10:34:35
+
+--
+-- PostgreSQL database dump complete
+--
+
