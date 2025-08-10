@@ -69,10 +69,6 @@ db.password=ton_mot_de_passe
 📸 Aperçu
 <img width="2160" height="1436" alt="work2" src="https://github.com/user-attachments/assets/4bfc9525-6c47-4a82-80cd-ce4aac6df232" />
 
-
-📄 Auteur
-Didis Gamos — @DidisGamos
-
 ---
 
 ## 📄 Auteur  
